@@ -1,5 +1,7 @@
 {
   "name": "PrintTest",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
