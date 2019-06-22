@@ -16,7 +16,6 @@ export class HelloIonicPage {
       alert('printers available::' + success);
       let options: PrintOptions = {
         name: 'MyDocument',
-        printerId: 'printer007',
         duplex: true,
         landscape: true,
         grayscale: true
