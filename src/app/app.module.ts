@@ -11,6 +11,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Printer } from '@ionic-native/printer';
+import { StarPRNT } from '@ionic-native/star-prnt';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -33,7 +35,8 @@ import { Printer } from '@ionic-native/printer';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Printer
+    Printer,
+    StarPRNT
   ]
 })
 export class AppModule {}
