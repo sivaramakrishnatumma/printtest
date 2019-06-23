@@ -2,13 +2,21 @@ import { Component } from '@angular/core';
 
 import { Printer, PrintOptions } from '@ionic-native/printer';
 import { StarPRNT } from '@ionic-native/star-prnt';
+import { TextEncoder } from 'text-encoding';
+import { Platform } from 'ionic-angular';
+declare var chrome;
 
 @Component({
   selector: 'page-hello-ionic',
   templateUrl: 'hello-ionic.html'
 })
 export class HelloIonicPage {
-  constructor(private printer: Printer, private starprnt: StarPRNT) {
+
+  socketId;
+  ip;
+  port;
+
+  constructor(private printer: Printer, private starprnt: StarPRNT, private platform: Platform) {
 
   }
 
@@ -49,5 +57,38 @@ export class HelloIonicPage {
         alert('STAR ERROR::' + JSON.stringify(error));
         console.error(error)
       });
+  }
+
+  connect(ip, port) {
+    console.log(ip + " " + port);
+    this.platform.ready().then(() => {
+      chrome.sockets.tcp.create(function (createInfo) {
+        chrome.sockets.tcp.connect(
+          createInfo.socketId,
+          ip,
+          port ? port : 9100,
+          function (result) {
+            if (!result) {
+              alert("connect success!");
+              this.socketId = createInfo.socketId;
+            } else {
+              this.socketId = null;
+            }
+          }
+        );
+      });
+    });
+  };
+
+  printToLAN() {
+    let content = 'Sample Test to print';
+    if (this.socketId == null) {
+      return;
+    }
+    var uint8array = new TextEncoder().encode(content);
+    chrome.sockets.tcp.send(this.socketId, uint8array.buffer, function (result) {
+      alert('SUCCESS::' + JSON.stringify(result));
+      console.log(result);
+    });
   }
 }

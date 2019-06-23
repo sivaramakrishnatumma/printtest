@@ -10,22 +10,25 @@
 
 <ion-content padding>
 
-  <h3>Welcome to your first Ionic app!</h3>
-
-  <p>
-    This starter project is our way of helping you get a functional app running in record time.
-  </p>
-  <p>
-    Follow along on the tutorial section of the Ionic docs!
-  </p>
-  <p>
+  
+  <!-- <p>
     <button ion-button color="primary" (click)="print()" full>Print</button>
-  </p>
-  <p>
-    <!-- <button ion-button color="secondary" (click)="pick()" full>Pick</button> -->
   </p>
 
   <p>
     <button ion-button color="dark" (click)="findStarDevices()" full>STAR PRNT Find Devices</button>
+  </p> -->
+
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="ip" placeholder="IP Address"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="port" placeholder="Port(default is 9100)"></ion-input>
+  </ion-item>
+  <p>
+    <button ion-button color="dark" (click)="connect(ip, port)" full>Connect to LAN</button>
+  </p>
+  <p>
+    <button ion-button color="dark" (click)="printToLAN(ip, port)" full>Print to LAN</button>
   </p>
 </ion-content>
