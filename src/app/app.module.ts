@@ -2,41 +2,39 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { ListPage } from '../pages/list/list';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { Printer } from '@ionic-native/printer';
 import { StarPRNT } from '@ionic-native/star-prnt';
+import { LanPrintProvider } from '../providers/lan-print/lan-print';
+import { StarPrintProvider } from '../providers/star-print/star-print';
+import { LoaderProvider } from '../providers/loader/loader';
 
+import { StarPrinterModels } from '../constants/star-printer-models';
 @NgModule({
   declarations: [
-    MyApp,
-    HelloIonicPage,
-    ItemDetailsPage,
-    ListPage
+    MyApp
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HelloIonicPage,
-    ItemDetailsPage,
-    ListPage
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Printer,
-    StarPRNT
+    StarPrinterModels,
+    StarPRNT,
+    LanPrintProvider,
+    StarPrintProvider,
+    LoaderProvider
   ]
 })
 export class AppModule {}

@@ -1,0 +1,44 @@
+<!--
+  Generated template for the StarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>STAR</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ng-container *ngIf="printers.length !== 0">
+    <ion-item>
+      <ion-label>IP Address</ion-label>
+      <ion-select [(ngModel)]="selectedStarPrinter" cancelText="Cancel" okText="Select">
+        <ion-option *ngFor="let printer of printers" [value]="printer">{{printer.portName}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Printer Model</ion-label>
+      <ion-select [(ngModel)]="selectedStarPrinterModel" cancelText="Cancel" okText="Select">
+        <ion-option *ngFor="let item of starPrinterModels" [value]="item">{{item.model}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <br>
+    <button class="connect-btn" ion-button full [disabled]="!selectedStarPrinter && !selectedStarPrinterModel" (click)="connectToStarPrinter()">Connect</button>
+    <br>
+    <p>
+      <button ion-button color="dark" (click)="printAsText()" full>Print As Text</button>
+    </p>
+    <p>
+      <button ion-button color="dark" (click)="printAsImageWithCommands()" full>Print As Image (commands)</button>
+    </p>
+    <p>
+      <button ion-button color="dark" (click)="printAsImageWithoutCommands()" full>Print As Image (normal)</button>
+    </p>
+  </ng-container>
+  <ng-container *ngIf="printers.length === 0">
+    <p class="no-printers-msg">Currently there are no printers available</p>
+    <button class="refresh-btn" color="secondary" ion-button full (click)="loadStarPrinters()">Refresh</button>
+  </ng-container>
+</ion-content>

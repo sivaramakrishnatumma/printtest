@@ -1,24 +1,16 @@
+<!--
+  Generated template for the LanPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Hello Ionic</ion-title>
+    <ion-title>LAN</ion-title>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-
-  
-  <!-- <p>
-    <button ion-button color="primary" (click)="print()" full>Print</button>
-  </p>
-
-  <p>
-    <button ion-button color="dark" (click)="findStarDevices()" full>STAR PRNT Find Devices</button>
-  </p> -->
-
   <ion-item>
     <ion-input type="text" [(ngModel)]="ip" placeholder="IP Address"></ion-input>
   </ion-item>
@@ -29,6 +21,6 @@
     <button ion-button color="dark" (click)="connect(ip, port)" full>Connect to LAN</button>
   </p>
   <p>
-    <button ion-button color="dark" (click)="printToLAN(ip, port)" full>Print to LAN</button>
+    <button ion-button color="dark" (click)="print(ip, port)" full>Print to LAN</button>
   </p>
 </ion-content>
